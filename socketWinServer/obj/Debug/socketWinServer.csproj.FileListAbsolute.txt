@@ -1,1 +1,9 @@
 D:\Danielito\socket client Win\socketWinServer\socketWinServer\bin\Debug\socketWinServer.exe.config
+D:\Danielito\socket client Win\socketWinServer\socketWinServer\bin\Debug\socketWinServer.exe
+D:\Danielito\socket client Win\socketWinServer\socketWinServer\bin\Debug\socketWinServer.pdb
+D:\Danielito\socket client Win\socketWinServer\socketWinServer\obj\Debug\socketWinServer.csprojResolveAssemblyReference.cache
+D:\Danielito\socket client Win\socketWinServer\socketWinServer\obj\Debug\socketWinServer.Form1.resources
+D:\Danielito\socket client Win\socketWinServer\socketWinServer\obj\Debug\socketWinServer.Properties.Resources.resources
+D:\Danielito\socket client Win\socketWinServer\socketWinServer\obj\Debug\socketWinServer.csproj.GenerateResource.Cache
+D:\Danielito\socket client Win\socketWinServer\socketWinServer\obj\Debug\socketWinServer.exe
+D:\Danielito\socket client Win\socketWinServer\socketWinServer\obj\Debug\socketWinServer.pdb

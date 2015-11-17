@@ -14,12 +14,78 @@ namespace socketWinServer
 {
     public partial class Form1 : Form
     {
+        public static string data = null;
         public Form1()
         {
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
+        {
+            byte[] bytes = new Byte[1024];
+
+#pragma warning disable CS0618 // Type or member is obsolete
+                              // Establish the local endpoint for the socket.
+                              // Dns.GetHostName returns the name of the 
+                              // host running the application.
+            IPHostEntry ipHostInfo = Dns.Resolve(Dns.GetHostName());           
+            IPAddress ipAddress = ipHostInfo.AddressList[0];
+            IPEndPoint localEndPoint = new IPEndPoint(ipAddress, int.Parse(puerto.Text));
+            textBox1.Text = "Conectándose a: " + localEndPoint.ToString();
+
+            // Create a TCP/IP socket.
+            Socket listener = new Socket(AddressFamily.InterNetwork,
+                SocketType.Stream, ProtocolType.Tcp);
+
+            // Bind the socket to the local endpoint and 
+            // listen for incoming connections.
+            try
+            {
+                listener.Bind(localEndPoint);
+                listener.Listen(10);
+
+                // Start listening for connections.
+                while (true)
+                {
+                    textBox1.Text ="Waiting for a connection...";
+                    // Program is suspended while waiting for an incoming connection.
+                    Socket handler = listener.Accept();
+                    data = null;
+
+                    // An incoming connection needs to be processed.
+                    while (true)
+                    {
+                        bytes = new byte[1024];
+                        int bytesRec = handler.Receive(bytes);
+                        data += Encoding.ASCII.GetString(bytes, 0, bytesRec);
+                        if (data.IndexOf("<EOF>") > -1)
+                        {
+                            break;
+                        }
+                    }
+
+                    // Show the data on the console.
+                    textBox1.Text = "Text received : {0}"+ data;
+
+                    // Echo the data back to the client.
+                    byte[] msg = Encoding.ASCII.GetBytes(data);
+
+                    handler.Send(msg);
+                    handler.Shutdown(SocketShutdown.Both);
+                    handler.Close();
+                }
+
+            }
+            catch (Exception ev)
+            {
+                textBox1.Text = ev.ToString();
+            }
+
+            Console.WriteLine("\nPress ENTER to continue...");
+            Console.Read();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }
