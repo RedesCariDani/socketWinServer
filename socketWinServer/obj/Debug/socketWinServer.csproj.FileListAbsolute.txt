@@ -1,0 +1,1 @@
+D:\Danielito\socket client Win\socketWinServer\socketWinServer\bin\Debug\socketWinServer.exe.config
